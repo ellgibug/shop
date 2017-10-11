@@ -41,7 +41,7 @@
 
     <ul class="nav nav-tabs border-0">
         <li role="presentation"><a href="/">ГЛАВНАЯ</a></li>
-        <li role="presentation"><a href="/page2">{{ __('front.page', ['number' => 2]) }}</a></li>
+        <li role="presentation"><a href="{{ route('page2') }}">{{ __('front.page', ['number' => 2]) }}</a></li>
         <li role="presentation" class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 {{ __('front.language') }} <span class="caret"></span>

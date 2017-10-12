@@ -77,7 +77,7 @@
                     </div>
                 @endforeach
             @empty
-                Продуктов не найдено
+                <p class="lead text-center" style="margin-top: 20px">Продукты не найдены</p>
             @endforelse
         </div>
     </div>

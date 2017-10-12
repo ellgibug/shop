@@ -63,7 +63,8 @@
         </li>
         <li role="presentation" class="pull-right"><a href="#">Link</a></li>
         <li role="presentation" class="pull-right">
-            <form class="form-inline" style="margin-top:6px">
+            <form class="form-inline" style="margin-top:6px" method="post" action="{{ route('search') }}">
+                {{ csrf_field() }}
                 <div class="form-group">
                     <input type="text" class="form-control input-sm" name="search" placeholder="Поиск">
                 </div>

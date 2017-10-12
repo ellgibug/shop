@@ -63,6 +63,15 @@ class ShopController extends Controller
         return view ('shop.product-single', compact('product'));
     }
 
+    public function search(Request $request)
+    {
+        $searchKey = $request->search;
+
+        $products = Product::search($searchKey)->get();
+
+        return view ('shop.search', compact('products', 'searchKey'));
+    }
+
 //    public function filter(Request $request, Product $products, $id)
 //    {
 //        $section = Section::find($id);

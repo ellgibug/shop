@@ -46,7 +46,7 @@ class ShopController extends Controller
             }
         }
 
-        $products = $products->paginate(4)->appends([
+        $products = $products->paginate(8)->appends([
             'minPrice' => $request->minPrice,
             'maxPrice' => $request->maxPrice,
             'isAvailable' => $request->isAvailable,
@@ -54,6 +54,13 @@ class ShopController extends Controller
         ]);
 
         return view('shop.products-list', compact('section', 'products'));
+    }
+
+    public function getSingleProduct($id)
+    {
+        $product = Product::find($id);
+
+        return view ('shop.product-single', compact('product'));
     }
 
 //    public function filter(Request $request, Product $products, $id)

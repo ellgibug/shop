@@ -62,5 +62,12 @@
             </ul>
         </li>
         <li role="presentation" class="pull-right"><a href="#">Link</a></li>
+        <li role="presentation" class="pull-right">
+            <form class="form-inline" style="margin-top:6px">
+                <div class="form-group">
+                    <input type="text" class="form-control input-sm" name="search" placeholder="Поиск">
+                </div>
+            </form>
+        </li>
     </ul>
 

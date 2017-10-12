@@ -6,6 +6,7 @@ Route::group(['middleware' => 'language'], function(){
     Route::get('/', 'ShopController@index');
 
     Route::get('section/{section}', 'ShopController@getProductsFromSection')->middleware('remove.token')->name('products-list');
+    Route::get('product/{product}', 'ShopController@getSingleProduct')->name('product-single');
 
 //    Route::any('/filter', 'ShopController@filter')->name('filter');
 

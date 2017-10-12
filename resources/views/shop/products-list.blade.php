@@ -52,7 +52,6 @@
             </div>
         </div>
         <div class="col-md-10" id="place">
-{{--            @forelse($section->products->where('price', '>', 100)->chunk(4) as $chunk)--}}
             @forelse($products->chunk(4) as $chunk)
                 @foreach($chunk as $product)
                     <div class="col-sm-6 col-md-3 text-center">
@@ -65,9 +64,14 @@
                                 @else
                                     <p style="background: orangered">Нет в наличии</p>
                                 @endif
-                                <p>
-                                    <a href="#" class="btn btn-default btn-block" role="button">${{ $product->price }}</a>
-                                </p>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <a href="#" class="btn btn-primary btn-block" role="button">${{ $product->price }}</a>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <a href="{{ route('product-single', $product->id) }}" class="btn btn-default btn-block" role="button">Подробнее</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

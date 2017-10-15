@@ -66,10 +66,10 @@
                                 @endif
                                 <div class="row">
                                     <div class="col-xs-6">
-                                        <a href="#" class="btn btn-primary btn-block" role="button">${{ $product->price }}</a>
+                                        <a href="{{ route('add-product-to-cart', $product->id) }}" class="btn btn-primary btn-block" role="button" {{ $product->availability ? '' : 'disabled' }}>${{ $product->price }}</a>
                                     </div>
                                     <div class="col-xs-6">
-                                        <a href="#" class="btn btn-default btn-block" role="button">Wishlist</a>
+                                        <a href="{{ route('add-product-to-wishlist', $product->id) }}" class="btn btn-default btn-block" role="button">Wishlist</a>
                                     </div>
                                 </div>
                             </div>

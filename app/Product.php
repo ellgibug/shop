@@ -19,6 +19,15 @@ class Product extends Model
         return 'name';
     }
 
+    public function subProducts()
+    {
+        return $this->hasMany('App\Product', 'feature', 'id');
+    }
+
+    public function mainProduct()
+    {
+        return $this->belongsTo('App\Product', 'id', 'feature');
+    }
 
 //    public function toSearchableArray()
 //    {

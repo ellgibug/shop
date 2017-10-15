@@ -61,7 +61,8 @@
                 <li><a href="#">Action</a></li>
             </ul>
         </li>
-        <li role="presentation" class="pull-right"><a href="#">Link</a></li>
+        <li role="presentation" class="pull-right"><a href="{{ route('wishlist') }}">Wishlist <span class="badge">{{ Cart::instance('wishlist')->count() }}</span></a></li>
+        <li role="presentation" class="pull-right"><a href="{{ route('cart') }}">Cart <span class="badge">{{ Cart::instance('shopping')->count() }}</span></a></li>
         <li role="presentation" class="pull-right">
             <form class="form-inline" style="margin-top:6px" action="{{ route('search') }}">
                 {{ csrf_field() }}

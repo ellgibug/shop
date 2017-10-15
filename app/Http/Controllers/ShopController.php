@@ -23,7 +23,7 @@ class ShopController extends Controller
     {
         $section = Section::find($id);
 
-        $products = $section->products;
+        $products = $section->products->where('feature', null);
 
         if ($request->has('minPrice') && $request->minPrice != '') {
             $products = $products->where('price', '>',  $request->minPrice);
@@ -104,10 +104,4 @@ class ShopController extends Controller
         return view ('shop.search', compact('products', 'searchKey'));
     }
 
-//    public function filter(Request $request, Product $products, $id)
-//    {
-//        $section = Section::find($id);
-//        $products = $section->products;
-//        return $products;
-//    }
 }

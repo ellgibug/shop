@@ -56,7 +56,7 @@
                 @foreach($chunk as $product)
                     <div class="col-sm-6 col-md-3 text-center">
                         <div class="thumbnail">
-                            <img src="{{ $product->image }}" alt="{{ $product->name }}">
+                            <a href="{{ route('product-single', $product->id) }}" ><img src="{{ $product->image }}" alt="{{ $product->name }}"></a>
                             <div class="caption">
                                 <h3>{{ $product->name }}</h3>
                                 @if($product->availability)
@@ -69,7 +69,7 @@
                                         <a href="#" class="btn btn-primary btn-block" role="button">${{ $product->price }}</a>
                                     </div>
                                     <div class="col-xs-6">
-                                        <a href="{{ route('product-single', $product->id) }}" class="btn btn-default btn-block" role="button">Подробнее</a>
+                                        <a href="#" class="btn btn-default btn-block" role="button">Wishlist</a>
                                     </div>
                                 </div>
                             </div>

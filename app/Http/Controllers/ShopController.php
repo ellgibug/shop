@@ -69,6 +69,38 @@ class ShopController extends Controller
 
         $products = Product::search($searchKey)->get();
 
+        /*
+         * дублирование. плохо
+         */
+
+        if ($request->has('minPrice') && $request->minPrice != '') {
+            $products = $products->where('price', '>',  $request->minPrice);
+        }
+
+        if ($request->has('maxPrice') && $request->maxPrice != '') {
+            $products = $products->where('price', '<',  $request->maxPrice);
+        }
+
+        if ($request->has('isAvailable') && $request->isAvailable == 1) {
+            $products = $products->where('availability',  1);
+        }
+
+        if ($request->has('sortBy')) {
+            if($request->sortBy == 2) {
+                $products = $products->sortBy('price');
+            }
+            if($request->sortBy == 3) {
+                $products = $products->sortByDesc('price');
+            }
+        }
+
+        $products = $products->paginate(8)->appends([
+            'minPrice' => $request->minPrice,
+            'maxPrice' => $request->maxPrice,
+            'isAvailable' => $request->isAvailable,
+            'sortBy' => $request->sortBy
+        ]);
+
         return view ('shop.search', compact('products', 'searchKey'));
     }
 

@@ -8,7 +8,7 @@ Route::group(['middleware' => 'language'], function(){
     Route::get('section/{section}', 'ShopController@getProductsFromSection')->middleware('remove.token')->name('products-list');
     Route::get('product/{product}', 'ShopController@getSingleProduct')->name('product-single');
 
-    Route::any('search', 'ShopController@search')->name('search');
+    Route::get('search', 'ShopController@search')->middleware('remove.token')->name('search');
 
 //    Route::any('/filter', 'ShopController@filter')->name('filter');
 

@@ -3,8 +3,8 @@
 @section('first-content')
     <div class="jumbotron text-center">
         <div class="container">
-            <h1>Поиск по запросу "{{ $searchKey }}"</h1>
-            <h4>Количество совпадений - {{ $products->count() }}</h4>
+            <h1>Поиск по запросу "{{ $search }}"</h1>
+            {{--<h4>Количество совпадений - {{ $products->count() }}</h4>--}}
         </div>
     </div>
 @endsection
@@ -54,7 +54,7 @@
                     <div class="panel-body">
                         <form action="{{ route('search') }}">
                             {{ csrf_field() }}
-                            <input type="hidden" value="{{ $searchKey }}" name="search">
+                            <input type="hidden" value="{{ $search }}" name="search">
                             <div class="form-group">
                                 <label for="price">Цена</label>
                                 <div class="row">
@@ -85,7 +85,7 @@
                             <button type="submit" class="btn btn-primary btn-block">Применить</button>
                         </form>
                         <br>
-                        <a href="{{ route('search', "search=$searchKey") }}" role="button" class="btn btn-default btn-block">Сбросить</a>
+                        <a href="{{ route('search', "search=$search") }}" role="button" class="btn btn-default btn-block">Сбросить</a>
                     </div>
                 </div>
             </div>
@@ -94,7 +94,7 @@
                     @foreach($chunk as $product)
                         <div class="col-sm-6 col-md-3 text-center">
                             <div class="thumbnail">
-                                <a href="{{ route('product-single', $product->id) }}" ><img src="{{ $product->image }}" alt="{{ $product->name }}"></a>
+                                <a href="{{ route('product-single', $product->id) }}" ><img src="{{ $product->image }}" alt="{{ $product->name }}" ></a>
                                 <div class="caption">
                                     <h3>{{ $product->name }}</h3>
                                     @if($product->availability)
@@ -104,10 +104,10 @@
                                     @endif
                                     <div class="row">
                                         <div class="col-xs-6">
-                                            <a href="{{ route('add-product-to-cart', $product->id) }}" class="btn btn-primary btn-block" role="button">${{ $product->price }}</a>
+                                            <a href="{{ route('add-product-to-cart', $product->id) }}" class="btn btn-primary btn-block" role="button" {{ $product->availability ? '' : 'disabled' }}>${{ $product->price }}</a>
                                         </div>
                                         <div class="col-xs-6">
-                                            <a href="#" class="btn btn-default btn-block" role="button">Wishlist</a>
+                                            <a href="{{ route('add-product-to-wishlist', $product->id) }} class="btn btn-default btn-block" role="button">Wishlist</a>
                                         </div>
                                     </div>
                                 </div>

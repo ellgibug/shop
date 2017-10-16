@@ -13,14 +13,14 @@ class CartController extends Controller
     {
         $cartItems = Cart::instance('shopping')->content();
 
-        return view ('cart.cart', compact('cartItems'));
+        return view ('orders.cart', compact('cartItems'));
     }
 
     public function wishlist()
     {
         $cartItems = Cart::instance('wishlist')->content();
 
-        return view ('cart.wishlist', compact('cartItems'));
+        return view ('orders.wishlist', compact('cartItems'));
     }
 
     public function addProductToCart(Request $request, $id)
@@ -76,4 +76,5 @@ class CartController extends Controller
 
         return back();
     }
+
 }

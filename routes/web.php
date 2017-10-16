@@ -20,6 +20,8 @@ Route::group(['middleware' => 'language'], function(){
 //    Route::match(['put', 'patch'],'wishlist/{wishlist}', 'CartController@updateWishlist')->name('update-wishlist');
     Route::delete('wishlist/{wishlist}', 'CartController@deleteProductFromWishlist')->name('destroy-wishlist');
 
+    Route::get('checkout', 'CheckoutController@index')->name('checkout'); //защитить. только после корзины
+
 
     Route::get('page2', 'ShopController@index2')->name('page2');
 

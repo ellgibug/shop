@@ -65,9 +65,11 @@ class ShopController extends Controller
 
     public function search(Request $request)
     {
-        $searchKey = $request->search;
+        $search = $request->search;
 
-        $products = Product::search($searchKey)->get();
+        $products = Product::search($search)->get();
+
+//        $products = Product::search($search)->where('feature', '>', 0);
 
         /*
          * дублирование. плохо
@@ -95,13 +97,14 @@ class ShopController extends Controller
         }
 
         $products = $products->paginate(8)->appends([
+            'search' => $search,
             'minPrice' => $request->minPrice,
             'maxPrice' => $request->maxPrice,
             'isAvailable' => $request->isAvailable,
             'sortBy' => $request->sortBy
         ]);
 
-        return view ('shop.search', compact('products', 'searchKey'));
+        return view ('shop.search', compact('products', 'search'));
     }
 
 }

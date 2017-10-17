@@ -54,7 +54,9 @@
                     </tfoot>
                 </tbody>
             </table>
+            @if( Cart::count())
             <a href="{{ route('checkout') }}" role="button" class="btn btn-primary btn-lg pull-right">Checkout</a>
+            @endif
         </div>
     </div>
 @endsection

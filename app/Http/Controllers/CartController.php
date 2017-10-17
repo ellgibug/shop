@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
@@ -11,6 +12,7 @@ class CartController extends Controller
 
     public function cart()
     {
+//        dd(Cart::instance('shopping')->count());
         $cartItems = Cart::instance('shopping')->content();
 
         return view ('orders.cart', compact('cartItems'));
@@ -34,6 +36,10 @@ class CartController extends Controller
         $product = Product::find($id);
 
         Cart::instance('shopping')->add($id, $product->name, $amount, $product->price);
+
+//        if(Auth::check()){
+//            Cart::instance('shopping')->store(Auth::user()->id);
+//        }
 
         return back();
     }

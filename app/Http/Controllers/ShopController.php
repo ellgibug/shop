@@ -107,4 +107,12 @@ class ShopController extends Controller
         return view ('shop.search', compact('products', 'search'));
     }
 
+    public function getAjax(Request $request)
+    {
+        dd($request->all());
+    }
+
+
+
+
 }

@@ -61,5 +61,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'language' => \App\Http\Middleware\LanguageSwitcher::class,
         'remove.token' => \App\Http\Middleware\RedirectIfTokenInRequest::class,
+        'checkout' => \App\Http\Middleware\Checkout::class,
     ];
 }

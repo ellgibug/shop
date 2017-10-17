@@ -4,6 +4,8 @@
 
 Route::group(['middleware' => 'language'], function(){
 
+    Auth::routes();
+
     Route::get('/', 'ShopController@index');
     Route::get('section/{section}', 'ShopController@getProductsFromSection')->middleware('remove.token')->name('products-list');
     Route::get('product/{product}', 'ShopController@getSingleProduct')->name('product-single');
@@ -20,8 +22,9 @@ Route::group(['middleware' => 'language'], function(){
 //    Route::match(['put', 'patch'],'wishlist/{wishlist}', 'CartController@updateWishlist')->name('update-wishlist');
     Route::delete('wishlist/{wishlist}', 'CartController@deleteProductFromWishlist')->name('destroy-wishlist');
 
-    Route::get('checkout', 'CheckoutController@index')->name('checkout'); //защитить. только после корзины
+    Route::get('checkout', 'CheckoutController@index')->middleware('checkout')->name('checkout'); //защитить. только после корзины
 
+    Route::get('home', 'UserController@index')->name('home');
 
     Route::get('page2', 'ShopController@index2')->name('page2');
 
@@ -29,5 +32,7 @@ Route::group(['middleware' => 'language'], function(){
         \Session::put('locale', $lang);
         return back();
     });
+
+    Route::post('ajax/get', 'ShopController@getAjax')->name('get-ajax');
 });
 

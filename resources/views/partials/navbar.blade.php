@@ -81,9 +81,9 @@
                                     <div class="form-group">
                                         <input type="text" class="form-control" placeholder="name" name="name">
                                     </div>
-                                    {{--<div class="form-group">--}}
-                                        {{--<input type="text" class="form-control" placeholder="surname">--}}
-                                    {{--</div>--}}
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="surname" name="surname">
+                                    </div>
                                     <div class="form-group">
                                         <input type="email" class="form-control" placeholder="e-mail" name="email">
                                     </div>

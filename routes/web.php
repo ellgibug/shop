@@ -22,9 +22,11 @@ Route::group(['middleware' => 'language'], function(){
 //    Route::match(['put', 'patch'],'wishlist/{wishlist}', 'CartController@updateWishlist')->name('update-wishlist');
     Route::delete('wishlist/{wishlist}', 'CartController@deleteProductFromWishlist')->name('destroy-wishlist');
 
-    Route::get('checkout', 'CheckoutController@index')->middleware('checkout')->name('checkout'); //защитить. только после корзины
+    Route::get('checkout', 'CheckoutController@index')->middleware('checkout')->name('checkout');
+    Route::get('success', 'CheckoutController@success')->middleware('checkout')->name('success'); //защитить. только после успеха
 
     Route::get('home', 'UserController@index')->name('home');
+    Route::match(['put', 'patch'],'home/{user}', 'UserController@update')->name('update-user');
 
     Route::get('page2', 'ShopController@index2')->name('page2');
 

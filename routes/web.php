@@ -37,3 +37,5 @@ Route::group(['middleware' => 'language'], function(){
     Route::post('ajax/get', 'ShopController@getAjax')->name('get-ajax');
 });
 
+Route::get('admin', 'AdminController@index')->name('admin-dashboard');
+

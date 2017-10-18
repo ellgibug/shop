@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
 
+use Gloudemans\Shoppingcart\Facades\Cart;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -22,6 +24,13 @@ class AppServiceProvider extends ServiceProvider
          */
         view()->composer('partials.main-menu', function ($view){
             $view->with('categories', \App\Category::all());
+        });
+
+        /*
+         * Количество единиц в листе желаний
+         */
+        view()->composer('partials.navbar', function ($view){
+            $view->with('numberOfWishlistItems', Cart::instance('wishlist')->content()->count());
         });
 
         /*

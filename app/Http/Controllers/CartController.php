@@ -24,7 +24,9 @@ class CartController extends Controller
     {
         $cartItems = Cart::instance('wishlist')->content();
 
-        return view ('orders.wishlist', compact('cartItems'));
+        $numberOfWishlistItems = Cart::instance('wishlist')->content()->count();
+
+        return view ('orders.wishlist', compact('cartItems', 'numberOfWishlistItems'));
     }
 
     public function addProductToCart(Request $request, $id)

@@ -18,16 +18,6 @@
                     <tr>
                         <td><a href="{{ route('product-single', $cartItem->id) }}">{{ $cartItem->name }}</a></td>
                         <td>${{ $cartItem->price }}</td>
-                        {{--<td>--}}
-                            {{--<form class="form-inline" action="{{ route('update-wishlist', $cartItem->rowId) }}" method="post">--}}
-                                {{--{{ csrf_field() }}--}}
-                                {{--{{ method_field('PATCH') }}--}}
-                                {{--<div class="form-group">--}}
-                                    {{--<input type="number" class="form-control" value="{{ $cartItem->qty }}" name="amount" min="1" style="max-width: 80px">--}}
-                                {{--</div>--}}
-                                {{--<button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-refresh"></i></button>--}}
-                            {{--</form>--}}
-                        {{--</td>--}}
                         <td>
                             <form action="{{ route('destroy-wishlist', $cartItem->rowId) }}" method="post">
                                 {{csrf_field()}}
@@ -43,14 +33,13 @@
                         <td colspan="3" class="text-center"><h3>Wish List is empty</h3></td>
                     </tr>
                     @endforelse
-                    {{--<tfoot>--}}
-                    {{--<tr>--}}
-                        {{--<td></td>--}}
-                        {{--<td>${{ Cart::subtotal() }}</td>--}}
-                        {{--<td>{{ Cart::count() }}</td>--}}
-                        {{--<td></td>--}}
-                    {{--</tr>--}}
-                    {{--</tfoot>--}}
+                    <tfoot>
+                    <tr>
+                        <td>{{ $numberOfWishlistItems }}</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    </tfoot>
                 </tbody>
             </table>
         </div>

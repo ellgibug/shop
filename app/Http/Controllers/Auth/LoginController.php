@@ -57,11 +57,29 @@ class LoginController extends Controller
 
         if ($this->attemptLogin($request)) {
 
-            $storedCartItems = DB::table('shoppingcart')->where('identifier', Auth::user()->id)->value('content');
+            $storedCartItems = DB::table('shoppingcart')->where([
+                ['identifier', Auth::user()->id],
+                ['instance', 'shopping']
+            ])->value('content');
+
+            $storedWishlistItems = DB::table('shoppingcart')->where([
+                ['identifier', Auth::user()->id],
+                ['instance', 'wishlist']
+            ])->value('content');
+
             $storedCartItems = \unserialize($storedCartItems);
+
+            $storedWishlistItems = \unserialize($storedWishlistItems);
+
             if($storedCartItems){
                 foreach ($storedCartItems as $item){
                     Cart::instance('shopping')->add($item->id, $item->name, $item->qty, $item->price);
+                }
+            }
+
+            if($storedWishlistItems){
+                foreach ($storedWishlistItems as $item){
+                    Cart::instance('wishlist')->add($item->id, $item->name, $item->qty, $item->price);
                 }
             }
 
@@ -81,9 +99,18 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
 
-        DB::table('shoppingcart')->where('identifier', Auth::user()->id)->delete();
+        DB::table('shoppingcart')->where([
+                ['identifier', Auth::user()->id],
+                ['instance', 'shopping']
+            ])->delete();
+
+        DB::table('shoppingcart')->where([
+            ['identifier', Auth::user()->id],
+            ['instance', 'wishlist']
+        ])->delete();
 
         Cart::instance('shopping')->store(Auth::user()->id);
+        Cart::instance('wishlist')->store(Auth::user()->id);
 
         $this->guard()->logout();
 

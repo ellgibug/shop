@@ -30,7 +30,7 @@
     @guest
     <li role="presentation" class="pull-right"><a href="#" role="button" data-toggle="modal" data-target="#myModal">Вход</a></li>
     @endguest
-    <li role="presentation" class="pull-right"><a href="{{ route('wishlist') }}">Wishlist</a></li>
+    <li role="presentation" class="pull-right"><a href="{{ route('wishlist') }}">Wishlist <span class="badge">{{ $numberOfWishlistItems }}</span></a></li>
     <li role="presentation" class="pull-right"><a href="{{ route('cart') }}">Cart <span class="badge">{{ Cart::instance('shopping')->count() }}</span></a></li>
     <li role="presentation" class="pull-right">
         <form class="form-inline" style="margin-top:6px" action="{{ route('search') }}">

@@ -6,7 +6,7 @@ Route::group(['middleware' => 'language'], function(){
 
     Auth::routes();
 
-    Route::get('/', 'ShopController@index');
+    Route::get('/', 'ShopController@index')->name('main');
     Route::get('section/{section}', 'ShopController@getProductsFromSection')->middleware('remove.token')->name('products-list');
     Route::get('product/{product}', 'ShopController@getSingleProduct')->name('product-single');
 
@@ -19,7 +19,6 @@ Route::group(['middleware' => 'language'], function(){
 
     Route::get('wishlist', 'CartController@wishlist')->name('wishlist');
     Route::get('wishlist/{wishlist}', 'CartController@addProductToWishlist')->name('add-product-to-wishlist');
-//    Route::match(['put', 'patch'],'wishlist/{wishlist}', 'CartController@updateWishlist')->name('update-wishlist');
     Route::delete('wishlist/{wishlist}', 'CartController@deleteProductFromWishlist')->name('destroy-wishlist');
 
     Route::get('checkout', 'CheckoutController@index')->middleware('checkout')->name('checkout');

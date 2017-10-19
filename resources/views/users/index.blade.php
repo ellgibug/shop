@@ -3,6 +3,8 @@
 @section('second-content')
    <div class="container-fluid">
        <div class="row">
+           @component('components.who')
+           @endcomponent
            @if(Auth::check())
 {{--           @if((Auth::user()->birthday || Auth::user()->sex ||  Auth::user()->city ||  Auth::user()->mobile_phone ||  Auth::user()->rules))--}}
            <h1 class="text-center">Форма регистации</h1>

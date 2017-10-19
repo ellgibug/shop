@@ -42,6 +42,11 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    public function showLoginForm()
+    {
+        return view('shop.index');
+    }
+
     public function login(Request $request)
     {
         $this->validateLogin($request);
@@ -98,7 +103,6 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
-
         DB::table('shoppingcart')->where([
                 ['identifier', Auth::user()->id],
                 ['instance', 'shopping']

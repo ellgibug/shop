@@ -6,6 +6,12 @@ Route::group(['middleware' => 'language'], function(){
 
     Auth::routes();
 
+//    Route::post('login', 'Auth\LoginController@login')->name('login');
+//    Route::get('/', 'Auth\LoginController@showLoginForm');
+//    Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+//    Route::post('register', 'Auth\RegisterController@register')->name('register');
+//    Route::get('/', 'Auth\LoginController@showLoginForm');
+
     Route::get('/', 'ShopController@index')->name('main');
     Route::get('section/{section}', 'ShopController@getProductsFromSection')->middleware('remove.token')->name('products-list');
     Route::get('product/{product}', 'ShopController@getSingleProduct')->name('product-single');
@@ -37,5 +43,12 @@ Route::group(['middleware' => 'language'], function(){
     Route::post('ajax/get', 'ShopController@getAjax')->name('get-ajax');
 });
 
-Route::get('admin', 'AdminController@index')->name('admin-dashboard');
+Route::prefix('admin')->group(function (){
+    Route::get('login', 'Auth\AdminLoginController@showLoginForm')->name('admin-login');
+    Route::post('login', 'Auth\AdminLoginController@login')->name('admin-login-submit');
+    Route::get('/', 'AdminController@index')->name('admin-dashboard');
+
+    Route::post('/logout', 'Auth\AdminLoginController@logout')->name('admin-logout');
+
+});
 

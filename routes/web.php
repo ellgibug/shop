@@ -43,12 +43,17 @@ Route::group(['middleware' => 'language'], function(){
     Route::post('ajax/get', 'ShopController@getAjax')->name('get-ajax');
 });
 
+//middleware!!!!!
 Route::prefix('admin')->group(function (){
     Route::get('login', 'Auth\AdminLoginController@showLoginForm')->name('admin-login');
     Route::post('login', 'Auth\AdminLoginController@login')->name('admin-login-submit');
     Route::get('/', 'AdminController@index')->name('admin-dashboard');
 
     Route::post('/logout', 'Auth\AdminLoginController@logout')->name('admin-logout');
+
+    Route::resource('roles', 'RoleController');
+    Route::resource('permissions', 'PermissionController');
+    Route::resource('managers', 'ManagerController');
 
 });
 

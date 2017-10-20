@@ -63,5 +63,8 @@ class Kernel extends HttpKernel
         'language' => \App\Http\Middleware\LanguageSwitcher::class,
         'remove.token' => \App\Http\Middleware\RedirectIfTokenInRequest::class,
         'checkout' => \App\Http\Middleware\Checkout::class,
+        'role' => \Zizaco\Entrust\Middleware\EntrustRole::class,
+        'permission' => \Zizaco\Entrust\Middleware\EntrustPermission::class,
+        'ability' => \Zizaco\Entrust\Middleware\EntrustAbility::class,
     ];
 }
